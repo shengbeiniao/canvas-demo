@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head lang="cn">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="canvas demo">
+    <meta name="author" content="三直">
+    <title>抛物线</title>
+    <style>
+        html, body {
+            margin: 0;
+            height: 100%;
+        }
+        #preview{
+            width: 500px;
+            height: 500px;
+        }
+        #canvas{
+            width: 500px;
+            height: 500px;
+            background-color: #006400;
+        }
+        #btn{
+            padding:10px 50px;
+            font-size:2em;
+        }
+    </style>
+</head>
+<body>
+<img id="preview">
+<canvas id="canvas"></canvas>
+<div>
+    <button id="btn">Preview</button>
+</div>
+<script>
+    var preview=document.getElementById('preview');
+    var canvas=document.getElementById('canvas');
+    var btn=document.getElementById('btn');
+
+    canvas.width=500;
+    canvas.height=500;
+    var ctx=canvas.getContext('2d');
+    var x=0,y=0,color='rgba(255,0,0,1)';
+
+    var lines=[];
+
+    for(var i=1;i<10;i++){
+        var line={
+            x:0,
+            y:0,
+            speed:i*4,
+            radius:10,
+            //color:'rgba('+Math.round(Math.random()*255)+','+Math.round(Math.random()*255)+','+Math.round(Math.random()*255)+',1)',
+            color:'rgba('+Math.round(Math.random()*160)+','+0+','+0+',1)'
+        }
+        lines.push(line);
+    }
+
+
+    var t=0;
+    var animateID=1;
+    function draw(){
+        animateID=window.requestAnimationFrame(draw);
+        lines.forEach(function(line){
+            ctx.fillStyle=line.color;
+            ctx.beginPath();
+            ctx.arc(line.x,line.y,line.radius,0,2*Math.PI);
+            ctx.fill();
+            t=t+0.01;
+            line.y=t*t;
+            line.x=line.speed*t;
+            console.log(line.y);
+            if(line.y>=canvas.height){
+                window.cancelAnimationFrame(animateID);
+            }
+        });
+    }
+
+    animateID=window.requestAnimationFrame(draw);
+
+    btn.addEventListener('click',function(){
+        var imageData=canvas.toDataURL('image/png');
+        preview.setAttribute('src',imageData);
+    });
+</script>
+</body>
+</html>
