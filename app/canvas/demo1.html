@@ -5,22 +5,16 @@
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="canvas demo">
     <meta name="author" content="三直">
+    <base href="/">
     <title>抛物线</title>
+    <script src="assets/scripts/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/styles/main.css">
     <style>
-        html, body {
-            margin: 0;
-            height: 100%;
-        }
         #preview{
-            width: 500px;
-            height: 500px;
-        }
-        #canvas{
-            width: 500px;
-            height: 500px;
-            background-color: #006400;
+            display: block;
         }
         #btn{
+            margin-top: 10px;
             padding:10px 50px;
             font-size:2em;
         }
@@ -37,8 +31,9 @@
     var canvas=document.getElementById('canvas');
     var btn=document.getElementById('btn');
 
-    canvas.width=500;
-    canvas.height=500;
+    preview.width=canvas.width=window.innerWidth;
+    preview.height=canvas.height=(window.innerHeight-100)/2;
+
     var ctx=canvas.getContext('2d');
     var x=0,y=0,color='rgba(255,0,0,1)';
 
@@ -69,7 +64,6 @@
             t=t+0.01;
             line.y=t*t;
             line.x=line.speed*t;
-            console.log(line.y);
             if(line.y>=canvas.height){
                 window.cancelAnimationFrame(animateID);
             }

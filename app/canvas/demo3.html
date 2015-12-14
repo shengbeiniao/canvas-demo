@@ -4,18 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="canvas demo">
-    <meta name="author" content="Frank.Zhang">
+    <meta name="author" content="三直">
+    <base href="/">
     <title></title>
+    <script src="assets/scripts/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/styles/main.css">
     <style>
-        html, body {
-            margin: 0;
-            height: 100%;
+        video{
+            width: 100%;
+        }
+        #canvas{
+            width: 100%;
+            background-color: black;
         }
     </style>
 </head>
 <body>
+<video id="video" autoplay controls>
+    <source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4">
+</video>
+<canvas id="canvas"></canvas>
+<div id="detect" class="hide">
+    mobile phone dose not work~
+</div>
 <script>
+    var video=document.getElementById('video');
+    var canvas=document.getElementById('canvas');
+    var ctx=canvas.getContext('2d');
+    var button=document.getElementById('btn');
+    var detect=document.getElementById('detect');
 
+    video.addEventListener('loadedmetadata',function(res){
+        var videoHeight,videoWidth;
+        videoWidth=res.srcElement.videoWidth;
+        videoHeight=res.srcElement.videoHeight;
+        video.width=canvas.width=window.innerWidth;
+        video.height=canvas.height=window.innerWidth*videoHeight/videoWidth;
+    });
+
+    video.crossOrigin='';
+    video.addEventListener('play',function(){
+        var width=canvas.width,height=canvas.height;
+        window.timer=window.timer||window.setInterval(function() {
+            try{
+                ctx.drawImage(video,0,0,width,height);
+                var imgData=ctx.getImageData(0,0,width,height);
+                var data=imgData.data;
+                for(var i=0;i<data.length;i=i+3){
+                    var r=data[i];
+                    var g=data[i+1];
+                    var b=data[i+2];
+                    var avg=Math.round((r+g+b)/3);
+                    data[i]=data[i+1]=data[i+2]=avg;
+                }
+                ctx.clearRect(0,0,width,height);
+                ctx.putImageData(imgData,0,0);
+            }catch(err){
+                canvas.className='hide';
+                detect.className='show';
+                clearInterval(window.timer);
+                return false;
+            }
+        },20);
+    });
 </script>
 </body>
 </html>
