@@ -1,0 +1,15 @@
+{
+  "name": "canvas-demo",
+  "version": "0.0.1",
+  "dependencies": {
+    "EaselJS": "~0.8.2",
+    "jquery": "~2.1.4",
+    "mediaelement": "~2.18.2",
+    "PreloadJS": "~0.6.2",
+    "SoundJS": "~0.6.2",
+    "stats.js": "*",
+    "three.js": "threejs#*",
+    "TweenJS": "~0.6.2"
+  },
+  "devDependencies": {}
+}
