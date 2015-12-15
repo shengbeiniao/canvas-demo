@@ -15,8 +15,8 @@ gulp.task('proxy', function() {
 gulp.task('static', function() {
   browserSync.init({
     server: {
-      baseDir: './app'
+      baseDir: '.'
     }
   });
-  gulp.watch(['app/**/*','app/!bower_components']).on('change', browserSync.reload);
+  gulp.watch(['index.html','stylesheets/*','app/**/*','app/!bower_components']).on('change', browserSync.reload);
 });

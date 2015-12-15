@@ -7,5 +7,5 @@ npm-debug.log
 dist
 .DS_Store
 build
-*.css
-*.css.map
+app/**/*.scss
+app/**/*.css.map
