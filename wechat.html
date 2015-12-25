@@ -55,8 +55,8 @@
     }
 
     //share to friend
-    var shareUrl=location.origin+'invite';
-    var imageUrl=location.origin+'/activities/invite/images/share.jpg';
+    var shareUrl=location.origin;
+    var imageUrl=location.origin+'/assets/images/share.jpg';
 
     $.post('http://crm.ffshtest.net/api/wechat/signature',{url:location.href},function(res){
         wx.config(res);
@@ -64,7 +64,7 @@
 
     wx.ready(function(){
         wx.onMenuShareTimeline({
-            title: '三直の私厨',
+            title: 'canvas demo',
             link: shareUrl,
             imgUrl: imageUrl,
             success: function () {
@@ -74,8 +74,8 @@
         });
 
         wx.onMenuShareAppMessage({
-            title: '三直の私厨',
-            desc: '\n有朋自远方来，不亦乐乎',
+            title: 'canvas demo',
+            desc: 'native canvas,createjs,threejs',
             link: shareUrl,
             imgUrl: imageUrl,
             type: '',
