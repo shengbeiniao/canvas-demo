@@ -59,6 +59,8 @@
     var imageUrl=location.origin+'/assets/images/share.jpg';
 
     $.post('http://crm.ffshtest.net/api/wechat/signature',{url:location.href},function(res){
+        console.log(res);
+        res.debug=true;
         wx.config(res);
     });
 
