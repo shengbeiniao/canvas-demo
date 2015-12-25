@@ -2,15 +2,6 @@
 var gulp = require('gulp');
 var browserSync = require('browser-sync').create();
 
-gulp.task('proxy', function() {
-  browserSync.init({
-    proxy: 'localhost:9000',
-    files: ['app/**/*','app/!bower_components'],
-    port: 3000
-  });
-});
-
-
 // Static server
 gulp.task('static', function() {
   browserSync.init({
@@ -18,5 +9,5 @@ gulp.task('static', function() {
       baseDir: '.'
     }
   });
-  gulp.watch(['index.html','stylesheets/*','app/**/*','app/!bower_components']).on('change', browserSync.reload);
+  gulp.watch(['**/*','!bower_components','!node_modules']).on('change', browserSync.reload);
 });

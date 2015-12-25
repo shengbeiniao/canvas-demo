@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="cn">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="canvas demo">
+    <meta name="author" content="三直">
+    <title></title>
+    <!--<script src="../assets/scripts/mobile-detect.js"></script>-->
+    <script src="../assets/lib/modernizr-custom.js"></script>
+    <link rel="stylesheet" type="text/css" href="../assets/styles/main.css">
+    <style>
+        canvas{
+            width: 100%;
+            height: 100%;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+<script>
+    var canvas=document.getElementById('canvas');
+    var W=window.innerWidth;
+    var H=window.innerHeight;
+    canvas.width=W;
+    canvas.height=H;
+
+    var ctx=canvas.getContext('2d');
+
+    var colorLibrary=[
+            '#CFAE79',
+            '#D0AE8A',
+            '#CB9F67'
+    ];
+
+    var image=new Image();
+    image.src='../assets/images/flower.png';
+    image.onload=function(){
+        ctx.drawImage(image,0,0,100,100);
+        var data=ctx.getImageData(0,0,1,2).data;
+
+        console.log(data);
+    }
+
+
+    function point(x,y){
+        ctx.moveTo(x,y);
+        ctx.lineTo(x+1,y+1);
+    }
+</script>
+</body>
+</html>

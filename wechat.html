@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head lang="cn">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="canvas demo">
+    <meta name="author" content="三直">
+    <base href="/">
+    <title>Canvas Demo</title>
+    <link rel="stylesheet" type="text/css" href="assets/styles/main.css">
+    <style>
+        h1{
+            font-size: 1.2rem;
+        }
+        .container{
+            margin-top: 50px;
+            text-align: center;
+        }
+        .container a{
+            display: block;
+            margin:20px 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <a href="http://crm.ffshtest.net/api/wechat/openid?redirect=http%3A%2F%2F10.0.80.188%3A3000%2Fapp%2Fwechat.html">openid</a>
+    <a href="http://crm.ffshtest.net/api/wechat/userinfo?redirect=http%3A%2F%2F10.0.80.188%3A3000%2Fapp%2Fwechat.html">userinfo</a>
+</div>
+<div class="message"></div>
+<script src="assets/lib/zepto.min.js"></script>
+<script src="assets/lib/jweixin-1.0.0.js"></script>
+<script>
+    function getUrlVars()
+    {
+        var vars = [], hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for(var i = 0; i < hashes.length; i++)
+        {
+            hash = hashes[i].split('=');
+            vars.push(hash[0]);
+            vars[hash[0]] = hash[1];
+        }
+        return vars;
+    }
+
+    var urlVars=getUrlVars();
+    if(urlVars.hasOwnProperty('openid')){
+        $('.message').html(urlVars['openid']);
+    }
+
+    if(urlVars.hasOwnProperty('userinfo')){
+        var userinfo=decodeURIComponent(urlVars['userinfo']);
+        $('.message').html(userinfo);
+    }
+
+    //share to friend
+    var shareUrl=location.origin+'invite';
+    var imageUrl=location.origin+'/activities/invite/images/share.jpg';
+
+    $.post('http://crm.ffshtest.net/api/wechat/signature',{url:location.href},function(res){
+        wx.config(res);
+    });
+
+    wx.ready(function(){
+        wx.onMenuShareTimeline({
+            title: '三直の私厨',
+            link: shareUrl,
+            imgUrl: imageUrl,
+            success: function () {
+            },
+            cancel: function () {
+            }
+        });
+
+        wx.onMenuShareAppMessage({
+            title: '三直の私厨',
+            desc: '\n有朋自远方来，不亦乐乎',
+            link: shareUrl,
+            imgUrl: imageUrl,
+            type: '',
+            dataUrl: '',
+            success: function () {
+            },
+            cancel: function () {
+            }
+        });
+    });
+
+    wx.error(function(res){
+
+    });
+</script>
+</body>
+</html>

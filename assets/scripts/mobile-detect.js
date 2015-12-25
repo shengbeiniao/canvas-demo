@@ -13,6 +13,6 @@
 (function () {
   // I only want to redirect iPhones, Android phones and a handful of 7" devices
   if (!isMobile.any) {
-    window.location='/canvas-demo/app/mobile.html';
+    window.location='/mobile.html';
   }
 })();
