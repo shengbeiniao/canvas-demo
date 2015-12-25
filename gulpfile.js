@@ -9,5 +9,5 @@ gulp.task('static', function() {
       baseDir: '.'
     }
   });
-  gulp.watch(['**/*','!bower_components','!node_modules']).on('change', browserSync.reload);
+  gulp.watch(['canvas/**/*','create/**/*','three/**/*']).on('change', browserSync.reload);
 });

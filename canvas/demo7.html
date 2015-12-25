@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head lang="cn">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="canvas demo">
+    <meta name="author" content="三直">
+    <title></title>
+    <script src="../assets/scripts/mobile-detect.js"></script>
+    <link rel="stylesheet" type="text/css" href="../assets/styles/main.css">
+    <style>
+        #canvas{
+            width: 100%;
+            height: 100%;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+<script src="../bower_components/Proton/build/proton-1.0.0.min.js"></script>
+<script>
+    var canvas=document.getElementById('canvas');
+    var ctx=canvas.getContext('2d');
+
+    var W=window.innerWidth;
+    var H=window.innerHeight;
+
+    ctx.width=W;
+    ctx.height=H;
+
+    var proton = new Proton();
+    var emitter = new Proton.Emitter();
+    //set Rate
+    emitter.rate = new Proton.Rate(Proton.getSpan(10, 20), 0.1);
+    //add Initialize
+    emitter.addInitialize(new Proton.Radius(1, 12));
+    emitter.addInitialize(new Proton.Life(2, 4));
+    emitter.addInitialize(new Proton.Velocity(3, Proton.getSpan(0, 360), 'polar'));
+    //add Behaviour
+    emitter.addBehaviour(new Proton.Color('ff0000', 'random'));
+    emitter.addBehaviour(new Proton.Alpha(1, 0));
+    //set emitter position
+    emitter.p.x = canvas.width / 2;
+    emitter.p.y = canvas.height / 2;
+    emitter.emit();
+    //add emitter to the proton
+    proton.addEmitter(emitter);
+    // add canvas renderer
+    var renderer = new Proton.Renderer('canvas', proton, canvas);
+    renderer.start();
+
+</script>
+</body>
+</html>

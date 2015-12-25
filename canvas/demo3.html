@@ -6,7 +6,6 @@
     <meta name="description" content="canvas demo">
     <meta name="author" content="三直">
     <title></title>
-    <script src="../assets/scripts/mobile-detect.js"></script>
     <link rel="stylesheet" type="text/css" href="../assets/styles/main.css">
     <style>
         video{
@@ -49,7 +48,7 @@
                 ctx.drawImage(video,0,0,width,height);
                 var imgData=ctx.getImageData(0,0,width,height);
                 var data=imgData.data;
-                for(var i=0;i<data.length;i=i+3){
+                for(var i=0;i<data.length;i=i+4){
                     var r=data[i];
                     var g=data[i+1];
                     var b=data[i+2];
