@@ -58,7 +58,7 @@
     var shareUrl=location.origin+'/wechat.html';
     var imageUrl=location.origin+'/assets/images/share.jpg';
 
-    $.get('http://crm.ffshtest.net/api/wechat/signature',{token:'5683a127463ee68d83e78765',url:location.href},function(res){
+    $.post('http://crm.ffshtest.net/api/wechat/signature',{token:'5683a127463ee68d83e78765',url:location.href},function(res){
         wx.config(res);
     });
 
