@@ -13,6 +13,7 @@
     "SoundJS": "~0.6.2",
     "stats.js": "*",
     "three.js": "threejs#*",
+    "thsimjs": "*",
     "TweenJS": "~0.6.2",
     "zeptojs": "~1.1.6"
   },
