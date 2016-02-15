@@ -1,0 +1,42 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  font-size: 24px; }
+
+.container {
+  position: fixed;
+  max-width: 720px;
+  background-color: green;
+  color: white; }
+
+h1, h2, h3, h4 {
+  margin: 0.2em 0; }
+
+h1 {
+  font-size: 4em; }
+
+h2 {
+  font-size: 3em; }
+
+h3 {
+  font-size: 2em; }
+
+h4 {
+  font-size: 1em; }
+
+.col-5 {
+  width: 5em;
+  height: 5em;
+  background-color: #0086b3; }
+
+.col-10 {
+  width: 10em;
+  height: 10em;
+  background-color: #009926; }
+
+.col-20 {
+  width: 20em;
+  height: 20em;
+  background-color: #00cc99; }
+
+/*# sourceMappingURL=responsive.css.map */
