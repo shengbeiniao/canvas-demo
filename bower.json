@@ -4,6 +4,7 @@
   "dependencies": {
     "bourbon": "~4.2.6",
     "EaselJS": "~0.8.2",
+    "jqcloud2": "~2.0.1",
     "jquery": "~2.1.4",
     "mediaelement": "~2.18.2",
     "modernizr": "~3.2.0",
